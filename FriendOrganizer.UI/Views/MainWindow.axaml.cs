@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using FriendOrganizer.UI.ViewModels;
 
 namespace FriendOrganizer.UI.Views
 {
@@ -7,6 +8,13 @@ namespace FriendOrganizer.UI.Views
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindow(MainWindowViewModel viewModel)
+        {
+            InitializeComponent();
+            DataContext = viewModel;
+            viewModel.Load();
         }
     }
 }

@@ -10,10 +10,14 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="FriendOrganizer">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <Grid ColumnDefinitions="200,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*">
+    <ItemsControl Items="{Binding Friends}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Button Content="{Binding FirstName}"/>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>   
+  </Grid>  
 
 </Window>

@@ -11,7 +11,6 @@ namespace FriendOrganizer.UI.ViewModels
         public string Greeting => "Welcome to FriendOrganizer!";
 
         private IFriendDataService _friendDataService;
-        private Friend _selectedFriend;
 
         public MainWindowViewModel(IFriendDataService friendDataService)
         {
