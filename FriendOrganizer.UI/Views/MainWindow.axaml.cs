@@ -1,10 +1,14 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using FriendOrganizer.UI.ViewModels;
+
 
 namespace FriendOrganizer.UI.Views
 {
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -13,8 +17,14 @@ namespace FriendOrganizer.UI.Views
         public MainWindow(MainWindowViewModel viewModel)
         {
             InitializeComponent();
-            DataContext = viewModel;
-            viewModel.Load();
+            _viewModel = viewModel;
+            DataContext = _viewModel;
+            MainWindow_Loaded();
+        }
+
+        private async void MainWindow_Loaded()
+        {
+            await _viewModel.LoadAsync();
         }
     }
 }
