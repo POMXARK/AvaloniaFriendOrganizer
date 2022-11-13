@@ -1,5 +1,6 @@
 ﻿using FriendOrganizer.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection.Metadata;
 
 namespace FriendOrganizer.DataAccess
@@ -35,7 +36,27 @@ namespace FriendOrganizer.DataAccess
                             new Friend { Id = 4, FirstName = "Sara", LastName = "Huber" });
             #endregion
 
+            new FriendEntityTypeConfiguration().Configure(modelBuilder.Entity<Friend>());
         }
 
+    }
+
+    public class FriendEntityTypeConfiguration : IEntityTypeConfiguration<Friend>
+    {
+        public void Configure(EntityTypeBuilder<Friend> builder)
+        {
+            builder
+                .Property(x => x.FirstName)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder
+                .Property(x => x.LastName)
+                .HasMaxLength(50);
+
+            builder
+                .Property(x => x.Email)
+                .HasMaxLength(50);
+        }
     }
 }

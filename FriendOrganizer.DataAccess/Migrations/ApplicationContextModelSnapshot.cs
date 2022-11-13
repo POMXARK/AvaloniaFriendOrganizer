@@ -23,13 +23,16 @@ namespace FriendOrganizer.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
