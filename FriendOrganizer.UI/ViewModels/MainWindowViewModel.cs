@@ -1,8 +1,14 @@
-﻿using FriendOrganizer.Model;
+﻿using DynamicData;
+using FriendOrganizer.Model;
 using FriendOrganizer.UI.Data;
 using ReactiveUI.Fody.Helpers;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System;
+using System.Diagnostics;
+using System.Reactive.Linq;
+using ReactiveUI;
+
+
 
 namespace FriendOrganizer.UI.ViewModels
 {
@@ -15,21 +21,23 @@ namespace FriendOrganizer.UI.ViewModels
 
         public MainWindowViewModel(IFriendDataService friendDataService)
         {
-            Friends = new ObservableCollection<Friend>();
             _friendDataService = friendDataService;
+            CreateFriendList(friendDataService)
+                .Connect()
+                .Bind(out _availableFriends)
+                .Subscribe(_ => Debug.WriteLine(" CreateFriendList"));
         }
 
-        public async Task LoadAsync()
+        private readonly ReadOnlyObservableCollection<Friend> _availableFriends;
+
+        public ReadOnlyObservableCollection<Friend> AvailableFriends => _availableFriends;
+
+        private ISourceList<Friend> CreateFriendList(IFriendDataService friendDataService)
         {
-            var friends = await _friendDataService.GetAllAsync();
-            Friends.Clear();
-            foreach (var friend in friends)
-            {
-                Friends.Add(friend);
-            }
+            var friends = new SourceList<Friend>();
+            friends.AddRange(friendDataService.GetItems());
+            return friends;
         }
-
-        public ObservableCollection<Friend> Friends { get; set; }
 
         [Reactive] Friend SelectedFriend { get; set; }
 

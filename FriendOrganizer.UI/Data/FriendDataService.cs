@@ -24,5 +24,10 @@ namespace FriendOrganizer.UI.Data
                 return await ctx.Friends.AsNoTracking().ToListAsync();
             }
         }
+
+        public IEnumerable<Friend> GetItems()
+        {
+                return _contextCreator().Friends;
+        }
     }
 }

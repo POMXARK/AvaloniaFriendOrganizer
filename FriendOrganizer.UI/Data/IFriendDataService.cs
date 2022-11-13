@@ -6,6 +6,7 @@ namespace FriendOrganizer.UI.Data
 {
   public interface IFriendDataService
   {
-    Task<List<Friend>> GetAllAsync();
+        Task<List<Friend>> GetAllAsync();
+        IEnumerable<Friend> GetItems();
   }
 }

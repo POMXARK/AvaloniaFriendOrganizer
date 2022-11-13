@@ -19,12 +19,6 @@ namespace FriendOrganizer.UI.Views
             InitializeComponent();
             _viewModel = viewModel;
             DataContext = _viewModel;
-            MainWindow_Loaded();
-        }
-
-        private async void MainWindow_Loaded()
-        {
-            await _viewModel.LoadAsync();
         }
     }
 }

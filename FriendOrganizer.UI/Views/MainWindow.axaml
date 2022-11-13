@@ -12,7 +12,7 @@
 
   <Grid ColumnDefinitions="200,*">
 
-    <ListBox Grid.Column="0" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
+    <ListBox Grid.Column="0" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding AvailableFriends}">
       <ListBox.ItemTemplate>
         <DataTemplate>
           <TextBlock Text="{Binding FirstName,Mode=TwoWay}"/>
