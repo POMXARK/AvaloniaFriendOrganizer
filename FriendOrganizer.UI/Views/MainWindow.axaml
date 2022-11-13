@@ -5,28 +5,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
-        xmlns:converters="clr-namespace:FriendOrganizer.UI.Helpers"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="FriendOrganizer.UI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="FriendOrganizer" Height="350" Width="525" FontSize="20">
+        Title="FriendOrganizer" MinWidth="260" MinHeight="300" Height="350" Width="525" FontSize="20">
 
-
-  <Window.Resources>
-    <ResourceDictionary>
-      <converters:JoinStringConverter x:Key="JoinStringConverter" />
-    </ResourceDictionary>
-  </Window.Resources>
-
-  <Grid ColumnDefinitions="200,*">
+  <Grid ColumnDefinitions="30* 70*">
     
     <ListBox Grid.Column="0" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
       <ListBox.ItemTemplate>
         <DataTemplate>
-          <TextBlock>
+          <TextBlock TextWrapping="Wrap">
             <TextBlock.Text>
-              <MultiBinding Converter="{StaticResource JoinStringConverter}" ConverterParameter=" ">
+              <MultiBinding StringFormat="{} {0} {1}">
                 <Binding Path="FirstName" Mode="TwoWay"/>
                 <Binding Path="LastName" Mode="TwoWay"/>
               </MultiBinding>
@@ -40,15 +32,15 @@
       
       <Label Content="Firstname" Margin="10 10 10 0"/>
       <TextBox Grid.Row="1" Text="{Binding SelectedFriend.FirstName,
-        Mode=TwoWay}" Margin="10 0 10 10"/>
+        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
 
       <Label Grid.Row="2" Content="Lastname" Margin="10 0"/>
       <TextBox Grid.Row="3" Text="{Binding SelectedFriend.LastName,
-        Mode=TwoWay}" Margin="10 0 10 10"/>
+        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
 
       <Label Grid.Row="4" Content="Email" Margin="10 0"/>
       <TextBox Grid.Row="5" Text="{Binding SelectedFriend.Email,
-        Mode=TwoWay}" Margin="10 0 10 10"/>
+        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
       
     </Grid>
 
