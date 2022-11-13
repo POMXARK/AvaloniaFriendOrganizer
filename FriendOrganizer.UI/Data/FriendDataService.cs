@@ -17,6 +17,7 @@ namespace FriendOrganizer.UI.Data
             _contextCreator = contextCreator;
         }
 
+        [Obsolete("Вместо этого метода следует использовать метод GetItems()")]
         public async Task<List<Friend>> GetAllAsync()
         {
             using (var ctx = _contextCreator())

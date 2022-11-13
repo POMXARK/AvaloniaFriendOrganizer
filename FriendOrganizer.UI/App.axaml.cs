@@ -36,6 +36,8 @@ namespace FriendOrganizer.UI
         {
             // Services
             containerRegistry.RegisterSingleton<IFriendDataService, FriendDataService>();
+            //containerRegistry.RegisterSingleton<ILookupDataService, LookupDataService>();
+            containerRegistry.RegisterSingleton<INavigationViewModel, NavigationViewModel>();
 
             // Views - Generic
             containerRegistry.Register<MainWindow>();
