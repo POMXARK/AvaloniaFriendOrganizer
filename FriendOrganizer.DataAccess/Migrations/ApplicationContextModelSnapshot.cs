@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FriendOrganizer.DataAccess.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(FriendOrganizerDbContext))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

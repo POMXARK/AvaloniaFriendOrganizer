@@ -5,14 +5,14 @@ using System.Reflection.Metadata;
 
 namespace FriendOrganizer.DataAccess
 {
-    public class ApplicationContext : DbContext
+    public class FriendOrganizerDbContext : DbContext
     {
         public DbSet<Friend> Friends { get; set; }
 
 
         public string DbPath { get; }
 
-        public ApplicationContext()
+        public FriendOrganizerDbContext()
         {
             DbPath = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "AvaloniaFriendOrganizer.db");
         }

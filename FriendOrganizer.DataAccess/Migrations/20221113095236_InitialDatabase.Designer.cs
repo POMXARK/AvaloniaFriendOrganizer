@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FriendOrganizer.DataAccess.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(FriendOrganizerDbContext))]
     [Migration("20221113095236_InitialDatabase")]
     partial class InitialDatabase
     {
