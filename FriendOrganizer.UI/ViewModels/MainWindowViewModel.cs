@@ -31,6 +31,7 @@ namespace FriendOrganizer.UI.ViewModels
         public ObservableCollection<Friend> Friends { get; set; }
 
         [Reactive] Friend SelectedFriend { get; set; }
+
     }
 }
 
