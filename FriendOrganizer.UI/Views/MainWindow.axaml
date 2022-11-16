@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:FriendOrganizer.UI.ViewModels"
         xmlns:view="clr-namespace:FriendOrganizer.UI.Views"
+        xmlns:core="clr-namespace:FriendOrganizer.UI;assembly=FriendOrganizer.UI"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
@@ -11,23 +12,33 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="FriendOrganizer" MinWidth="260" MinHeight="300" Height="350" Width="525" FontSize="20">
 
-  <Grid ColumnDefinitions="30* 70*">
-    
-    <ListBox Grid.Column="0" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <TextBlock TextWrapping="Wrap">
-            <TextBlock.Text>
-              <MultiBinding StringFormat="{} {0} {1}">
-                <Binding Path="FirstName" Mode="TwoWay"/>
-                <Binding Path="LastName" Mode="TwoWay"/>
-              </MultiBinding>
-            </TextBlock.Text>
-          </TextBlock>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
+  <StackPanel>
+    <view:Navigation/>
 
+    <Grid ColumnDefinitions="30* 70*">
+      <!-- Main Content -->
+
+      <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}"/>-->
+      <!--<view:NavigationView/>-->
+
+      <Grid>
+      <ListBox Grid.Column="0" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock TextWrapping="Wrap">
+              <TextBlock.Text>
+                <MultiBinding StringFormat="{} {0} {1}">
+                  <Binding Path="FirstName" Mode="TwoWay"/>
+                  <Binding Path="LastName" Mode="TwoWay"/>
+                </MultiBinding>
+              </TextBlock.Text>
+            </TextBlock>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+    </Grid>
+    
     <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*">
       
       <Label Content="Firstname" Margin="10 10 10 0"/>
@@ -44,6 +55,6 @@
       
     </Grid>
 
-  </Grid>  
-
+  </Grid>
+  </StackPanel>
 </Window>

@@ -1,9 +1,14 @@
 ﻿using DynamicData;
 using FriendOrganizer.Model;
 using FriendOrganizer.UI.Data;
+using FriendOrganizer.UI.Event;
+using Prism.Events;
+using Prism.Regions;
+using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -11,30 +16,26 @@ using System.Threading.Tasks;
 
 namespace FriendOrganizer.UI.ViewModels
 {
-    public class NavigationViewModel : INavigationViewModel
+    public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
-        private ILookupDataService _friendLookupService;
+        private IEventAggregator _eventAggregator;
 
-        public NavigationViewModel(ILookupDataService friendLookupService)
+        public string Test => "NavigationViewModel";
+
+        public NavigationViewModel(IEventAggregator eventAggregator)
         {
-            _friendLookupService = friendLookupService;
-            CreateFriendList(_friendLookupService)
-                .Connect()
-                .Bind(out _friends)
-                .Subscribe();
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<MessageSendEvent>().Subscribe(GetFriend);
         }
 
-        private ISourceList<LookupItem> CreateFriendList(ILookupDataService friendDataService)
+        private void GetFriend(Friend obj)
         {
-            var friends = new SourceList<LookupItem>();
-            friends.AddRange(friendDataService.GetItems());
-            return friends;
+            Friend = obj;
         }
 
-
-        private readonly ReadOnlyObservableCollection<LookupItem> _friends;
-
-        public ReadOnlyObservableCollection<LookupItem> Friends => _friends;
+        [Reactive] public Friend Friend { get; set; }
 
     }
+
 }
+

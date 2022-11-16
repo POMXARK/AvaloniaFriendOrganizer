@@ -6,38 +6,43 @@ using System.Collections.ObjectModel;
 using System;
 using System.Reactive.Linq;
 using ReactiveUI;
-
+using Prism.Events;
+using FriendOrganizer.UI.Event;
 
 namespace FriendOrganizer.UI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
 
-        private IFriendDataService _friendDataService;
+        public IFriendDataService _friendDataService;
+        private IEventAggregator _eventAggregator;
 
-        public MainWindowViewModel(IFriendDataService friendDataService)
+        public MainWindowViewModel(
+            IFriendDataService friendDataService,
+            //IRegionManager regionManager,
+            IEventAggregator eventAggregator
+            )
         {
             _friendDataService = friendDataService;
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<MessageSendEvent>().Publish(SelectedFriend);
             CreateFriendList(friendDataService)
                 .Connect()
                 .Bind(out _friends)
                 .Subscribe();
         }
 
-        private ISourceList<Friend> CreateFriendList(IFriendDataService friendDataService)
+        public ISourceList<Friend> CreateFriendList(IFriendDataService friendDataService)
         {
             var friends = new SourceList<Friend>();
             friends.AddRange(friendDataService.GetItems());
             return friends;
         }
 
-        // виртуальное поле для связывания
-        [Reactive] Friend SelectedFriend { get; set; }
-
-
-        private readonly ReadOnlyObservableCollection<Friend> _friends;
+        public readonly ReadOnlyObservableCollection<Friend> _friends;
         public ReadOnlyObservableCollection<Friend> Friends => _friends;
 
+        [Reactive] public Friend SelectedFriend { get; set; }
     }
 }
 

@@ -2,15 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="FriendOrganizer.UI.Views.NavigationView">
-  <Grid>
-    <ListBox Grid.Column="0"  Items="{Binding Friends}">
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <TextBlock Text="{Binding FirstName,Mode=TwoWay}"/>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
-  </Grid>
+             x:Class="FriendOrganizer.UI.Views.Navigation">
+
+      <TextBox Grid.Row="1" Text="{Binding Friend.FirstName,
+        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
+
+
 </UserControl>

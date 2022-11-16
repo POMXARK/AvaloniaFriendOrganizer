@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace FriendOrganizer.UI.Views
 {
-    public partial class NavigationView : UserControl
+    public partial class Navigation : UserControl
     {
-        public NavigationView()
+        public Navigation()
         {
             InitializeComponent();
         }

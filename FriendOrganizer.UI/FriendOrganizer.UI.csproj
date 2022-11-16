@@ -30,6 +30,7 @@
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
+	<PackageReference Include="Prism.Avalonia" Version="8.1.97" />
 	<PackageReference Include="Prism.DryIoc.Avalonia" Version="8.1.97" />
 	<PackageReference Include="ReactiveUI.Fody" Version="18.3.1" />
 	<PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
@@ -37,5 +38,10 @@
   <ItemGroup>
     <ProjectReference Include="..\FriendOrganizer.DataAccess\FriendOrganizer.DataAccess.csproj" />
     <ProjectReference Include="..\FriendOrganizer.Model\FriendOrganizer.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Navigation.axaml.cs">
+      <DependentUpon>Navigation.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

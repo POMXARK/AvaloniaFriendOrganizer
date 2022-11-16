@@ -5,6 +5,7 @@ using FriendOrganizer.UI.Data;
 using FriendOrganizer.UI.ViewModels;
 using FriendOrganizer.UI.Views;
 using Prism.DryIoc;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
 using Prism.Services.Dialogs;
@@ -32,6 +33,20 @@ namespace FriendOrganizer.UI
             base.Initialize();
         }
 
+
+        /// <summary>Called after Initialize.</summary>
+        protected override void OnInitialized()
+        {
+            // Register Views to the Region it will appear in. Don't register them in the ViewModel.
+            var regionManager = Container.Resolve<IRegionManager>();
+            //regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(DashboardView));
+            //regionManager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(NavigationView));
+
+
+            ////var logService = Container.Resolve<ILogService>();
+            ////logService.Configure("swlog.config");
+        }
+
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Services
@@ -41,6 +56,7 @@ namespace FriendOrganizer.UI
 
             // Views - Generic
             containerRegistry.Register<MainWindow>();
+            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
         }
 
         /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>
