@@ -16,23 +16,7 @@
     <Grid ColumnDefinitions="30* 70*">
       <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}"/>-->
       <view:Navigation/>
-    
-    <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*">
-      
-      <Label Content="Firstname" Margin="10 10 10 0"/>
-      <TextBox Grid.Row="1" Text="{Binding Friend.FirstName,
-        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
-
-      <Label Grid.Row="2" Content="Lastname" Margin="10 0"/>
-      <TextBox Grid.Row="3" Text="{Binding Friend.LastName,
-        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
-
-      <Label Grid.Row="4" Content="Email" Margin="10 0"/>
-      <TextBox Grid.Row="5" Text="{Binding Friend.Email,
-        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
-      
+      <view:FriendDetail Grid.Column="1"/>
     </Grid>
-
-  </Grid>
   </StackPanel>
 </Window>

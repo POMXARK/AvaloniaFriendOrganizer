@@ -8,7 +8,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="FriendOrganizer.UI.Views.Navigation">
 
-    <Grid Grid.Column="1">
       <ListBox SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
         <ListBox.ItemTemplate>
           <DataTemplate>
@@ -23,6 +22,5 @@
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
-    </Grid>
-
+  
 </UserControl>
