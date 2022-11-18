@@ -13,44 +13,22 @@
         Title="FriendOrganizer" MinWidth="260" MinHeight="300" Height="350" Width="525" FontSize="20">
 
   <StackPanel>
-    <view:Navigation/>
-
     <Grid ColumnDefinitions="30* 70*">
-      <!-- Main Content -->
-
       <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}"/>-->
-      <!--<view:NavigationView/>-->
-
-      <Grid>
-      <ListBox Grid.Column="0" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
-        <ListBox.ItemTemplate>
-          <DataTemplate>
-            <TextBlock TextWrapping="Wrap">
-              <TextBlock.Text>
-                <MultiBinding StringFormat="{} {0} {1}">
-                  <Binding Path="FirstName" Mode="TwoWay"/>
-                  <Binding Path="LastName" Mode="TwoWay"/>
-                </MultiBinding>
-              </TextBlock.Text>
-            </TextBlock>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
-
-    </Grid>
+      <view:Navigation/>
     
     <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*">
       
       <Label Content="Firstname" Margin="10 10 10 0"/>
-      <TextBox Grid.Row="1" Text="{Binding SelectedFriend.FirstName,
+      <TextBox Grid.Row="1" Text="{Binding Friend.FirstName,
         Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
 
       <Label Grid.Row="2" Content="Lastname" Margin="10 0"/>
-      <TextBox Grid.Row="3" Text="{Binding SelectedFriend.LastName,
+      <TextBox Grid.Row="3" Text="{Binding Friend.LastName,
         Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
 
       <Label Grid.Row="4" Content="Email" Margin="10 0"/>
-      <TextBox Grid.Row="5" Text="{Binding SelectedFriend.Email,
+      <TextBox Grid.Row="5" Text="{Binding Friend.Email,
         Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
       
     </Grid>

@@ -49,14 +49,18 @@ namespace FriendOrganizer.UI
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Views - Generic
+            containerRegistry.Register<MainWindow>();
+
+            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
+
             // Services
             containerRegistry.RegisterSingleton<IFriendDataService, FriendDataService>();
             //containerRegistry.RegisterSingleton<ILookupDataService, LookupDataService>();
-            containerRegistry.RegisterSingleton<INavigationViewModel, NavigationViewModel>();
+            //containerRegistry.RegisterSingleton<INavigationViewModel, NavigationViewModel>();
+            //containerRegistry.RegisterSingleton<IMainWindowViewModel, MainWindowViewModel>();
 
-            // Views - Generic
-            containerRegistry.Register<MainWindow>();
-            containerRegistry.RegisterSingleton<IEventAggregator, EventAggregator>();
+
         }
 
         /// <summary>User interface entry point, called after Register and ConfigureModules.</summary>

@@ -5,6 +5,6 @@ namespace FriendOrganizer.UI.ViewModels
 {
     public interface INavigationViewModel
     {
-
+        Friend SelectedFriend { get; set; }
     }
 }

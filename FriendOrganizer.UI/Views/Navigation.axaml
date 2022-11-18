@@ -3,12 +3,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:vm="using:FriendOrganizer.UI.ViewModels"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="FriendOrganizer.UI.Views.Navigation">
 
-      <TextBox Grid.Row="1" Text="{Binding Friend.FirstName,
-        Mode=TwoWay}" Margin="10 0 10 10" TextWrapping="Wrap" MaxLength="50"/>
-
+    <Grid Grid.Column="1">
+      <ListBox SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock TextWrapping="Wrap">
+              <TextBlock.Text>
+                <MultiBinding StringFormat="{} {0} {1}">
+                  <Binding Path="FirstName" Mode="TwoWay"/>
+                  <Binding Path="LastName" Mode="TwoWay"/>
+                </MultiBinding>
+              </TextBlock.Text>
+            </TextBlock>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
 
 </UserControl>

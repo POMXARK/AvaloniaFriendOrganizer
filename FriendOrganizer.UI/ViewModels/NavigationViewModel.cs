@@ -3,39 +3,42 @@ using FriendOrganizer.Model;
 using FriendOrganizer.UI.Data;
 using FriendOrganizer.UI.Event;
 using Prism.Events;
-using Prism.Regions;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FriendOrganizer.UI.ViewModels
 {
-    public class NavigationViewModel : ViewModelBase, INavigationViewModel
+    public class NavigationViewModel : ViewModelBase //, INavigationViewModel
     {
         private IEventAggregator _eventAggregator;
 
-        public string Test => "NavigationViewModel";
-
-        public NavigationViewModel(IEventAggregator eventAggregator)
-        {
+        public NavigationViewModel(IEventAggregator eventAggregator, IFriendDataService friendDataService) {
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<MessageSendEvent>().Subscribe(GetFriend);
+
+            this.WhenAnyValue(x => x.SelectedFriend)
+            .Subscribe(x => _eventAggregator.GetEvent<SendSelectedFriendEvent>().Publish(x));
+
+
+            CreateFriendList(friendDataService)
+            .Connect()
+            .Bind(out _friends)
+            .Subscribe();
         }
 
-        private void GetFriend(Friend obj)
-        {
-            Friend = obj;
+        public ISourceList<Friend> CreateFriendList(IFriendDataService friendDataService) {
+            var friends = new SourceList<Friend>();
+            friends.AddRange(friendDataService.GetItems());
+            return friends;
         }
 
-        [Reactive] public Friend Friend { get; set; }
+        public readonly ReadOnlyObservableCollection<Friend> _friends;
+        public ReadOnlyObservableCollection<Friend> Friends => _friends;
+
+
+        [Reactive] public Friend SelectedFriend { get; set; }
 
     }
-
 }
 
