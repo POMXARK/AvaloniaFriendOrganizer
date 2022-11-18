@@ -8,5 +8,6 @@ namespace FriendOrganizer.UI.Data
   {
         Task<List<Friend>> GetAllAsync();
         IEnumerable<Friend> GetItems();
+        Task SaveAsync(Friend friend);
   }
 }

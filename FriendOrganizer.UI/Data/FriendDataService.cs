@@ -30,5 +30,14 @@ namespace FriendOrganizer.UI.Data
         {
                 return _contextCreator().Friends;
         }
+
+        public async Task SaveAsync(Friend friend)
+        {
+            var ctx = _contextCreator();
+                ctx.Friends.Attach(friend);
+                ctx.Entry(friend).State = EntityState.Modified;
+                await ctx.SaveChangesAsync();
+            
+        }
     }
 }

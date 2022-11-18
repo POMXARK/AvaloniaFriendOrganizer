@@ -8,14 +8,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="FriendOrganizer.UI.Views.Navigation">
 
-      <ListBox SelectedItem="{Binding SelectedFriend,Mode=TwoWay}" Items="{Binding Friends}">
+      <ListBox SelectedItem="{Binding SelectedFriend}" Items="{Binding Friends}">
         <ListBox.ItemTemplate>
           <DataTemplate>
-            <TextBlock TextWrapping="Wrap">
+            <TextBlock TextWrapping="Wrap" >
               <TextBlock.Text>
-                <MultiBinding StringFormat="{} {0} {1}">
-                  <Binding Path="FirstName" Mode="TwoWay"/>
-                  <Binding Path="LastName" Mode="TwoWay"/>
+                <MultiBinding StringFormat="{} {0} {1}" >
+                  <Binding Path="FirstName" />
+                  <Binding Path="LastName" />
                 </MultiBinding>
               </TextBlock.Text>
             </TextBlock>
