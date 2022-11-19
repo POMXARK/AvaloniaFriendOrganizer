@@ -19,17 +19,14 @@ namespace FriendOrganizer.UI.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<SendSelectedFriendEvent>().Subscribe(x => Friend = x); // accept the change
 
-
             _friendDataService = friendDataService;
-            //SaveCommand = ReactiveCommand.CreateFromTask<Friend>(x =>  );
-        }
 
-        //ReactiveCommand<Friend, Unit> SaveCommand { get; set; }
+        }
 
         public async void  SaveAddUpdate(Friend friend)
         {
             await _friendDataService.SaveAsync(friend);
-            _eventAggregator.GetEvent<SendSelectedFriendEvent>().Publish(Friend);
+            _eventAggregator.GetEvent<SendUpdateLoocupFriendEvent>().Publish(Friend);
         }
 
         [Reactive] public Friend Friend { get; set; }
